@@ -1,0 +1,13 @@
+<ul>
+    <li style="float: right;"><a [routerLink]="['/login']">Login</a></li>
+    <li style="float: right;"><a [routerLink]="['/register']">Register</a></li>
+    <li style="float: right;">
+        <label style="margin-right:10px; color: white">Users List</label>
+        <select style="margin-top:7px; margin-right: 5px; background-color: azure; font-size: x-large;" (click)="getUserList()">
+            <option *ngFor="let u of users" disabled="true" style="font-size: medium;">
+                {{u.name}}
+            </option>
+        </select>
+    </li>
+        
+</ul>

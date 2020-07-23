@@ -1,0 +1,32 @@
+<div style="margin-left: 500px;">
+<h3><b>Invoice Details</b></h3>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Sub Total</th>
+    </tr>
+    <tr *ngFor="let item of itemObject">
+        <td>{{item.product.id}}</td>
+        <td>{{item.product.name}}</td>
+        <td>{{item.product.price}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.product.price * item.quantity}}</td>
+    </tr>
+    <tr>
+        <td colspan="4" align="right">Taxes (19%)</td>
+        <td>{{taxes}}</td>
+    </tr>
+    <tr>
+        <td colspan="4" align="right">Total</td>
+        <td>{{total}}</td>
+    </tr>
+</table>
+<ol>  
+    <li>Seller's Share: {{sellerShare | number}}</li> <br> 
+    <li>Website Share: {{websiteShare | number}}</li>  <br>
+    <li>Charity Share: {{charityShare | number}}</li>
+</ol>
+</div>

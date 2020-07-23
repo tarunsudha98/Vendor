@@ -1,0 +1,12 @@
+<!-- <a [routerLink]="['/products']">Products</a> |
+<a [routerLink]="['/cart']">Cart</a>
+<a [routerLink]="['/login']">login</a>
+<a [routerLink]="['/register']">Register</a>
+<br><br>
+<router-outlet></router-outlet> -->
+
+  <app-home *ngIf="!isAdmin && !isCustomer"></app-home>
+  <app-admin *ngIf="isAdmin && !isCustomer"></app-admin>
+  <app-customer *ngIf="isCustomer && !isAdmin"></app-customer>
+
+<router-outlet></router-outlet>

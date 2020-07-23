@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+}
+mat-form-field {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<div style="margin-left: 75px; border: 1px;">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="activeForm" (ngSubmit)="saveData()">
+                <h3>  Registration FORM  </h3>
+                <div class="row">
+                    <mat-form-field class="col-lg-4 col-md-3 col-sm-4">
+                        <input matInput type="text" formControlName="name" placeholder="Name" maxlength="50" required />
+                        <mat-error>Name is required.</mat-error>
+                        <!-- <mat-icon color="warn" #toolTip="matTooltip" matSuffix matTooltip="'Name field is required.'" *ngIf="(activeForm.get('name').dirty || activeForm.get('name').touched) && activeForm.get('name').invalid">error</mat-icon> -->
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="col-lg-4 col-md-3 col-sm-4">
+                        <input matInput type="text" formControlName="loginId" placeholder="Login Id" maxlength="100" required />
+                        <mat-error *ngIf="(activeForm.get('loginId').dirty || activeForm.get('loginId').touched) && activeForm.get('loginId').invalid">Please enter in correct format. (eg. tarun123@gmail.com)</mat-error>
+                        <!-- <mat-icon color="warn" #toolTip="matTooltip" matSuffix matTooltip="Please Enter in this pattern.(eg. 'abc@gmail.com')" *ngIf="(activeForm.get('loginId').dirty || activeForm.get('loginId').touched) && activeForm.get('loginId').invalid">error</mat-icon> -->
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="col-lg-4 col-md-3 col-sm-4">
+                        <input matInput type="password" formControlName="password" placeholder="Password" maxlength="10" required />
+                        <mat-error>Password is required.</mat-error>
+                        <!-- <mat-icon color="warn" #toolTip="matTooltip" matSuffix matTooltip="Please Enter in this pattern.(eg. 'abc@gmail.com')" *ngIf="(activeForm.get('password').dirty || activeForm.get('password').touched) && activeForm.get('password').invalid">error</mat-icon> -->
+                    </mat-form-field>
+                </div>
+            
+                <button type="submit" mat-raised-button color="warn" [disabled]="!activeForm.valid">Submit</button>
+                <!-- <mat-hint *ngIf="checkFlag">Login Id is already registered.</mat-hint>
+                <mat-hint *ngIf="!checkFlag">User is successfully registered.</mat-hint> -->
+            
+            </form>
+        </mat-card-content>
+    </mat-card>
+    
+</div>
+
+</body>
+
+<!-- <div *ngFor="let item of objReg">
+    <label>{{item.name}}</label>
+</div> -->
+

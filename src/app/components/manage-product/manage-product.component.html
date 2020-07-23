@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+}
+mat-form-field {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+
+<div style="margin-left: 100px; border: 1px;">
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="activeForm" (ngSubmit)="addProduct()">
+            <h3>  Add Product  </h3>
+            <div class="row">
+                <mat-form-field class="col-lg-4 col-md-3 col-sm-4">
+                    <input matInput type="text" formControlName="id" placeholder="Product Id" required />
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-lg-4 col-md-3 col-sm-4">
+                    <input matInput type="text" formControlName="name" placeholder="Name" required/>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-lg-4 col-md-3 col-sm-4">
+                    <input matInput type="number" formControlName="price" placeholder="price"  />
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="col-lg-4 col-md-3 col-sm-4">
+                    <input matInput type="time" formControlName="startTime" placeholder="Start Time"  />
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="col-lg-4 col-md-3 col-sm-4">
+                    <input matInput type="time" formControlName="endTime" placeholder="End Time"  />
+                </mat-form-field>
+            </div>
+    
+            <button type="submit" mat-raised-button color="warn" [disabled]="!activeForm.valid">Add Product</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+    
+</div>
+
+</body>
+
