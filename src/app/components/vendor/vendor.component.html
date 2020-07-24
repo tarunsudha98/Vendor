@@ -1,0 +1,59 @@
+<div style="margin-left: 150px;">
+    <h2 style="padding-left: 20px;">Vendors List</h2>
+    <div style="margin-left: 15px; margin-right: 15px;">
+        <mat-form-field style="width: 350px;">
+            <input matInput type="text" (keyup)="applyFilter($event.target.value)" placeholder="Search" >
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      
+        <!-- Id Column -->
+        <ng-container matColumnDef="id"  class="make-gold">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header style="padding-right: 60px;"> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 60px;"> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Address Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 60px;"> Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+
+        <!-- Creation Date Column -->
+        <ng-container matColumnDef="createdDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 60px;"> Created Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdDate | date: 'dd-MMM-yyyy'}} </td>
+          </ng-container>
+      
+        <!-- Edit Vendor Column -->
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 20px;"> Update Vendor </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" (click)="updateVendor(element.id)">Update</button></td>
+        </ng-container>
+
+        <!-- Favorite Vendor Column -->
+        <ng-container matColumnDef="favourite">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 20px;"> Favorite Vendor </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button *ngIf="element.favourite" mat-icon-button color="accent" (click)="checkFav(element.favourite, element.id)">
+                <mat-icon style="font-size: 36px;">stars</mat-icon>
+              </button> 
+              <button *ngIf="!element.favourite" mat-icon-button color="Accent" (click)="checkFav(element.favourite, element.id)">
+                <mat-icon style="font-size: 36px;">stars</mat-icon>
+              </button>
+              <!-- <button *ngIf="element.favourite" mat-raised-button color="accent" (click)="checkFav(element.favourite, element.id)">Favourite</button> -->
+            </td>
+        </ng-container>        
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'make-gold': row.name == 'Rahul'}" ></tr>
+    </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+    </div>

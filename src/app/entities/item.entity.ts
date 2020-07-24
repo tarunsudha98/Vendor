@@ -1,8 +1,6 @@
-import { Product } from './product.entity';
-
 export class Item {
 
-    product: Product;
+    id: string;
+    name: string;
     quantity: number;
-
 }

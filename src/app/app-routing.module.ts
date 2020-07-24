@@ -1,26 +1,24 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { CartComponent } from './components/cart/cart.component';
-import { ProductComponent } from './components/product/product.component';
-import { InvoiceComponent } from './components/invoice/invoice.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CustomerComponent } from './components/customer/customer.component';
-import { ManageProductComponent } from './components/manage-product/manage-product.component';
-import { RemoveItemComponent } from './components/remove-item/remove-item.component';
 import { HomeComponent } from './components/home/home.component';
+import { VendorComponent } from './components/vendor/vendor.component';
+import { AddVendorComponent } from './components/add-vendor/add-vendor.component';
+import { RemoveVendorComponent } from './components/remove-vendor/remove-vendor.component';
+import { ManageCommodityComponent } from './components/manage-commodity/manage-commodity.component';
 
 const routes: Routes = [
 	{ path: '', component: LoginComponent },
-	{ path: 'products', component: ProductComponent },
-	{ path: 'cart', component: CartComponent },
-	{ path: 'invoice', component: InvoiceComponent},
+	{ path: 'vendors', component: VendorComponent },
 	{ path: 'login', component: LoginComponent},
 	{ path: 'register', component: RegisterComponent},
-	{ path: 'manageProducts', component: ManageProductComponent},
-	{ path: 'removeItem', component: RemoveItemComponent},
+	{ path: 'addVendor', component: AddVendorComponent},
+	{ path: 'removeVendor', component: RemoveVendorComponent},
+	{ path: 'manageItem', component: ManageCommodityComponent},
 	{ path: '**', redirectTo: '' }
 	
 ];

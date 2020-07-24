@@ -24,12 +24,12 @@ export class UserService {
                 if(user.isAdmin){
                     this.isAdmin = true;
                     this.updateUserType();
-                    this.router.navigate(['/products'])
+                    this.router.navigate(['/vendors'])
                 }
                 else{
                     this.isCustomer = true;
                     this.updateUserType();
-                    this.router.navigate(['/products'])
+                    this.router.navigate(['/vendors'])
                 }
             }
             else{
@@ -89,14 +89,14 @@ export class UserService {
                     this.isAdmin = user.isAdmin;
                     this.isCustomer = !user.isAdmin;
                     this.updateUserType();
-                    this.router.navigate(['/products'])
+                    this.router.navigate(['/vendors'])
                     
                 }
             }
-            else{
-                alert('User is not registered.'+'\n'+'Please register first.')
-                        this.router.navigate(['/register'])
-            }
+            // else{
+            //     alert('User is not registered.'+'\n'+'Please register first.')
+            //             this.router.navigate(['/register'])
+            // }
         }
         else{
             let user1: IUser =  {
@@ -116,7 +116,7 @@ export class UserService {
                     this.isAdmin = user1.isAdmin;
                     this.isCustomer = !user1.isAdmin;
                     this.updateUserType();
-                    this.router.navigate(['/products'])
+                    this.router.navigate(['/vendors'])
         }
     }
 }
