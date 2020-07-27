@@ -3,21 +3,15 @@ import { Injectable, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Item } from '../entities/item.entity';
+import { Vendor } from '../entities/vendor';
 
 @Injectable()
-export class ProductService implements OnInit {
+export class ProductService {
 
-    private items: Item[] = 
-    [
-        {id: '1', name: 'Shampoos', quantity: 0, },
-        {id: '2', name: 'Soaps', quantity: 0 },
-        {id: '3', name: 'Detergants', quantity: 0 }
-    ];
+    vendors: Vendor[];
+    private items: Item[]=[];
 
     constructor(private router: Router) {
-    }
-    ngOnInit(){
-        this.findAll();
     }
 
     findAll(): Item[] {
@@ -25,6 +19,19 @@ export class ProductService implements OnInit {
         if(!!items1 && items1.length>0){
             this.items = JSON.parse(items1);
         }
+        var vendors1 = localStorage.getItem('vendors');
+        if(!!vendors1 && vendors1.length>0){
+            this.vendors = JSON.parse(vendors1);
+            this.vendors.forEach(x => {
+                if(!this.items.find(y => y.vId == x.id)){
+                    this.items.push(
+                    {vId: x.id, id: '1', name: 'Shampoos', quantity: 0, },
+                    {vId: x.id, id: '2', name: 'Soaps', quantity: 0 },
+                    {vId: x.id, id: '3', name: 'Detergants', quantity: 0 })
+                }
+            })
+        }
+
         return this.items;
     }
 
@@ -44,15 +51,15 @@ export class ProductService implements OnInit {
     //     this.router.navigate(['/products'])
     // }
 
-    addItem(id: string){
-        let index = this.items.findIndex(p => p.id == id);
+    addItem(id: string, vendorId: string){
+        let index = this.items.findIndex(p => p.id == id && p.vId == vendorId);
         this.items[index].quantity += 1;
         localStorage.setItem('items',JSON.stringify(this.items))
         alert('Item Added.')
     }
 
-    removeItem(id: string){
-        let index = this.items.findIndex(p =>p.id == id);
+    removeItem(id: string, vendorId: string){
+        let index = this.items.findIndex(p =>p.id == id && p.vId == vendorId);
         if(this.items[index].quantity > 0){
             this.items[index].quantity -=1;
             alert('Item Removed.')

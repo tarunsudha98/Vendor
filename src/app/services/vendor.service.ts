@@ -5,14 +5,11 @@ import { Router } from '@angular/router';
 import { Vendor } from '../entities/vendor';
 
 @Injectable()
-export class VendorService implements OnInit {
+export class VendorService{
 
     private vendors: Vendor[] = [];
     
     constructor(private router: Router) {
-    }
-    ngOnInit(){
-        this.findAll();
     }
 
     findAll(): Vendor[] {
@@ -48,7 +45,9 @@ export class VendorService implements OnInit {
 
     updateItem(obj: Vendor){
         let index = this.vendors.findIndex(p =>p.id == obj.id);
-        this.vendors[index] = obj;
+        let favourite = this.vendors[index].favourite;    // check for favourite
+        this.vendors[index] = obj;             // update the object
+        this.vendors[index].favourite = favourite;    
         localStorage.setItem('vendors',JSON.stringify(this.vendors))
         alert('Vendor Updated.')
         this.router.navigate(['/vendors'])

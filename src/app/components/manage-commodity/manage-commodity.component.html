@@ -4,49 +4,59 @@
     <h5 style="padding-left: 20px; margin-left: 20px;">*Price of Shampoo/piece is Rs.150 <br></h5>
     <h5 style="padding-left: 20px; margin-left: 20px;">*Price of Shampoo/piece is Rs.45 <br></h5>
     <h5 style="padding-left: 20px; margin-left: 20px;">*Price of Shampoo/piece is Rs.96 </h5>
-    <div style="margin-left: 15px; margin-right: 15px;">
+    <h4>Select a Vendor:</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Vendors</mat-label>
+      <mat-select matNativeControl required (selectionChange)="onVendorChange($event)">
+        <mat-option *ngFor="let vendor of vendors" [value]="vendor.id">
+          {{vendor.id + ': ' + vendor.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <div style="margin-left: 15px; margin-right: 15px;" *ngIf="vendorFlag">
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       
         <!-- Id Column -->
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef  mat-sort-header style="padding-right: 60px;"> Id </th>
+          <th mat-header-cell *matHeaderCellDef style="padding-right: 60px;"> Id </th>
           <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
       
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 60px;"> Name </th>
+          <th mat-header-cell *matHeaderCellDef style="padding-right: 60px;"> Name </th>
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
       
         <!-- Address Column -->
         <ng-container matColumnDef="quantity">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 60px;"> Quantity of Boxes </th>
+          <th mat-header-cell *matHeaderCellDef style="padding-right: 60px;"> Quantity of Boxes </th>
           <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
         </ng-container>
 
         <!-- Total Items Column -->
         <ng-container matColumnDef="totalItems">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 60px;"> Total No. Of Items </th>
+            <th mat-header-cell *matHeaderCellDef style="padding-right: 60px;"> Total No. Of Items </th>
             <td mat-cell *matCellDef="let element"> {{element.quantity * 40}} </td>
         </ng-container>
 
         <!-- Total Items Column -->
         <ng-container matColumnDef="totalCost">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 60px;"> Total Cost of Items </th>
+            <th mat-header-cell *matHeaderCellDef style="padding-right: 60px;"> Total Cost of Items </th>
             <td mat-cell *matCellDef="let element"> {{element.quantity * 40 * (costItem(element.id))}} </td>
           </ng-container>
       
         <!-- Add item Column -->
         <ng-container matColumnDef="add">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 20px;"> Add Quantity </th>
+          <th mat-header-cell *matHeaderCellDef style="padding-right: 20px;"> Add Quantity </th>
           <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" (click)="addItem(element.id)">Add</button></td>
         </ng-container>
 
         <!-- Remove Item Column -->
         <ng-container matColumnDef="remove">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 20px;"> Remove </th>
+            <th mat-header-cell *matHeaderCellDef style="padding-right: 20px;"> Remove </th>
             <td mat-cell *matCellDef="let element">  <button mat-raised-button color="accent" (click)="removeItem(element.id)">Remove</button></td>
         </ng-container>        
       
